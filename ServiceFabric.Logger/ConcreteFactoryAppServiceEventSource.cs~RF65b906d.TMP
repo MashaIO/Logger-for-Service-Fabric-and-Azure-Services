@@ -1,0 +1,49 @@
+﻿using System.Threading.Tasks;
+
+namespace Logger.Wrapper
+{
+    public class ConcreteFactoryAppServiceEventSource : LoggerFactory
+    {
+        public override ILog GetLogger() //Factory Method Implementation 
+        {
+            return AppServiceLog.Current;
+        }
+    }
+
+
+    public class LbasEventSource
+    {
+        static LbasEventSource()
+        {
+            Task.Run(() => { });
+        }
+
+        // Instance constructor is private to enforce singleton semantics
+        private LbasEventSource() : base()
+        {
+
+        }
+
+        public static readonly LbasEventSource Current = new LbasEventSource();
+
+        public ILog AppLogger
+        {
+            get
+            {
+                LoggerFactory loggerFactory = new ConcreteFactoryAppServiceEventSource();
+                ILog log = loggerFactory.GetLogger();
+                return log;
+            }
+        }
+
+        public ILog ServiceLogger
+        {
+            get
+            {
+                LoggerFactory loggerFactory = new ConcreteFactoryAppServiceEventSource();
+                ILog log = loggerFactory.GetLogger();
+                return log;
+            }
+        }
+    }
+}
