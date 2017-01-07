@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Fabric;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Fabric;
 using System.Web.Http;
 using Logger.Base;
-using Logger.Infrastructure;
 using Logger.ServiceFabric;
 using Microsoft.Practices.Unity;
 using Owin;

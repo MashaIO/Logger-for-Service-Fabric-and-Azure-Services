@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Logger.Base;
-using Logger.Infrastructure;
 using Logger.ServiceFabric;
 
 namespace sflogservice.Controllers

@@ -15,8 +15,6 @@ Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "ServiceFabricLog", "Service
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sflogservice", "sflogservice\sflogservice.csproj", "{3EE1CCD2-36B2-49C8-8FD2-2D04ADC1DA7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logger.Infrastructure", "Logger.Infrastructure\Logger.Infrastructure.csproj", "{9039DE9C-9F84-4E89-80BA-9CF9B940824C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CloudRelease|Any CPU = CloudRelease|Any CPU
@@ -111,22 +109,6 @@ Global
 		{3EE1CCD2-36B2-49C8-8FD2-2D04ADC1DA7B}.Release|Any CPU.ActiveCfg = Release|x64
 		{3EE1CCD2-36B2-49C8-8FD2-2D04ADC1DA7B}.Release|x64.ActiveCfg = Release|x64
 		{3EE1CCD2-36B2-49C8-8FD2-2D04ADC1DA7B}.Release|x64.Build.0 = Release|x64
-		{9039DE9C-9F84-4E89-80BA-9CF9B940824C}.CloudRelease|Any CPU.ActiveCfg = Release|Any CPU
-		{9039DE9C-9F84-4E89-80BA-9CF9B940824C}.CloudRelease|Any CPU.Build.0 = Release|Any CPU
-		{9039DE9C-9F84-4E89-80BA-9CF9B940824C}.CloudRelease|x64.ActiveCfg = Release|Any CPU
-		{9039DE9C-9F84-4E89-80BA-9CF9B940824C}.CloudRelease|x64.Build.0 = Release|Any CPU
-		{9039DE9C-9F84-4E89-80BA-9CF9B940824C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9039DE9C-9F84-4E89-80BA-9CF9B940824C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9039DE9C-9F84-4E89-80BA-9CF9B940824C}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{9039DE9C-9F84-4E89-80BA-9CF9B940824C}.Debug|x64.Build.0 = Debug|Any CPU
-		{9039DE9C-9F84-4E89-80BA-9CF9B940824C}.LocalDebug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9039DE9C-9F84-4E89-80BA-9CF9B940824C}.LocalDebug|Any CPU.Build.0 = Debug|Any CPU
-		{9039DE9C-9F84-4E89-80BA-9CF9B940824C}.LocalDebug|x64.ActiveCfg = Debug|Any CPU
-		{9039DE9C-9F84-4E89-80BA-9CF9B940824C}.LocalDebug|x64.Build.0 = Debug|Any CPU
-		{9039DE9C-9F84-4E89-80BA-9CF9B940824C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9039DE9C-9F84-4E89-80BA-9CF9B940824C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9039DE9C-9F84-4E89-80BA-9CF9B940824C}.Release|x64.ActiveCfg = Release|Any CPU
-		{9039DE9C-9F84-4E89-80BA-9CF9B940824C}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

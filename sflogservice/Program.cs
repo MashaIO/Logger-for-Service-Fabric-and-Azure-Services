@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Fabric;
 using System.Threading;
-using System.Threading.Tasks;
-using Logger.Base;
-using Logger.Infrastructure;
-using Logger.ServiceFabric;
 using Microsoft.ServiceFabric.Services.Runtime;
 
 namespace sflogservice

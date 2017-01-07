@@ -54,6 +54,8 @@
   <ItemGroup>
     <Compile Include="ILog.cs" />
     <Compile Include="ILoggerFactory.cs" />
+    <Compile Include="ILogStrategy.cs" />
+    <Compile Include="LogStrategy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
