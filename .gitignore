@@ -16,3 +16,7 @@
 *.pdb
 obj
 bin
+/ServiceFabricLog/pkg
+/ServiceFabricLog/pkg/Debug/ApplicationManifest.xml
+/ServiceFabricLog/pkg/Debug/sflogservicePkg/Config/Settings.xml
+/ServiceFabricLog/pkg/Debug/sflogservicePkg/ServiceManifest.xml

@@ -24,14 +24,6 @@ namespace Logger.ServiceFabric
 
         }
 
-        // Todo : Move to constants file
-        protected const int ServiceInfoMessageEventId = 7;
-        protected const int ServiceWarnMessageEventId = 8;
-        protected const int ServiceErrorMessageEventId = 9;
-        protected const int ServiceVerboseMessageEventId = 10;
-        protected const int ServiceCriticalMessageEventId = 11;
-        protected const int ServiceLogAlwaysMessageEventId = 12;
-        
         public static class Keywords
         {
             public const EventKeywords Requests = (EventKeywords)0x1L;
@@ -160,7 +152,7 @@ namespace Logger.ServiceFabric
         }
 
 
-        [Event(ServiceLogAlwaysMessageEventId, Level = EventLevel.LogAlways, Keywords = Keywords.LxFabric, Message = "{7}")]
+        [Event(EventConstants.ServiceLogAlwaysMessageEventId, Level = EventLevel.LogAlways, Keywords = Keywords.LxFabric, Message = "{7}")]
         private
 #if UNSAFE
         unsafe
@@ -176,7 +168,7 @@ namespace Logger.ServiceFabric
                 string message)
         {
 #if !UNSAFE
-            WriteEvent(ServiceLogAlwaysMessageEventId, serviceName, serviceTypeName, replicaOrInstanceId, partitionId, applicationName, applicationTypeName, nodeName, message);
+            WriteEvent(EventConstants.ServiceLogAlwaysMessageEventId, serviceName, serviceTypeName, replicaOrInstanceId, partitionId, applicationName, applicationTypeName, nodeName, message);
 
 #else
             const int numArgs = 8;
@@ -192,14 +184,14 @@ namespace Logger.ServiceFabric
                 eventData[6] = new EventData { DataPointer = (IntPtr) pNodeName, Size = SizeInBytes(nodeName) };
                 eventData[7] = new EventData { DataPointer = (IntPtr) pMessage, Size = SizeInBytes(message) };
 
-                WriteEventCore(ServiceLogAlwaysMessageEventId, numArgs, eventData);
+                WriteEventCore(EventConstants.ServiceLogAlwaysMessageEventId, numArgs, eventData);
             }
 #endif
         }
 
         #region Events
 
-        [Event(ServiceInfoMessageEventId, Level = EventLevel.Informational, Keywords = Keywords.LxFabric, Message = "{7}")]
+        [Event(EventConstants.ServiceInfoMessageEventId, Level = EventLevel.Informational, Keywords = Keywords.LxFabric, Message = "{7}")]
         private
 #if UNSAFE
         unsafe
@@ -215,7 +207,7 @@ namespace Logger.ServiceFabric
                 string message)
         {
 #if !UNSAFE
-            WriteEvent(ServiceInfoMessageEventId, serviceName, serviceTypeName, replicaOrInstanceId, partitionId, applicationName, applicationTypeName, nodeName, message);
+            WriteEvent(EventConstants.ServiceInfoMessageEventId, serviceName, serviceTypeName, replicaOrInstanceId, partitionId, applicationName, applicationTypeName, nodeName, message);
 
 #else
             const int numArgs = 8;
@@ -231,14 +223,14 @@ namespace Logger.ServiceFabric
                 eventData[6] = new EventData { DataPointer = (IntPtr) pNodeName, Size = SizeInBytes(nodeName) };
                 eventData[7] = new EventData { DataPointer = (IntPtr) pMessage, Size = SizeInBytes(message) };
 
-                WriteEventCore(ServiceInfoMessageEventId, numArgs, eventData);
+                WriteEventCore(EventConstants.ServiceInfoMessageEventId, numArgs, eventData);
             }
 #endif
         }
 
 
 
-        [Event(ServiceErrorMessageEventId, Level = EventLevel.Error, Keywords = Keywords.LxFabric, Message = "{7}")]
+        [Event(EventConstants.ServiceErrorMessageEventId, Level = EventLevel.Error, Keywords = Keywords.LxFabric, Message = "{7}")]
         private
 #if UNSAFE
         unsafe
@@ -254,7 +246,7 @@ namespace Logger.ServiceFabric
                 string message)
         {
 #if !UNSAFE
-            WriteEvent(ServiceErrorMessageEventId, serviceName, serviceTypeName, replicaOrInstanceId, partitionId, applicationName, applicationTypeName, nodeName, message);
+            WriteEvent(EventConstants.ServiceErrorMessageEventId, serviceName, serviceTypeName, replicaOrInstanceId, partitionId, applicationName, applicationTypeName, nodeName, message);
 
 #else
             const int numArgs = 8;
@@ -270,12 +262,12 @@ namespace Logger.ServiceFabric
                 eventData[6] = new EventData { DataPointer = (IntPtr) pNodeName, Size = SizeInBytes(nodeName) };
                 eventData[7] = new EventData { DataPointer = (IntPtr) pMessage, Size = SizeInBytes(message) };
 
-                WriteEventCore(ServiceErrorMessageEventId, numArgs, eventData);
+                WriteEventCore(EventConstants.ServiceErrorMessageEventId, numArgs, eventData);
             }
 #endif
         }
 
-        [Event(ServiceWarnMessageEventId, Level = EventLevel.Warning, Keywords = Keywords.LxFabric, Message = "{7}")]
+        [Event(EventConstants.ServiceWarnMessageEventId, Level = EventLevel.Warning, Keywords = Keywords.LxFabric, Message = "{7}")]
         private
 #if UNSAFE
         unsafe
@@ -291,7 +283,7 @@ namespace Logger.ServiceFabric
                 string message)
         {
 #if !UNSAFE
-            WriteEvent(ServiceWarnMessageEventId, serviceName, serviceTypeName, replicaOrInstanceId, partitionId, applicationName, applicationTypeName, nodeName, message);
+            WriteEvent(EventConstants.ServiceWarnMessageEventId, serviceName, serviceTypeName, replicaOrInstanceId, partitionId, applicationName, applicationTypeName, nodeName, message);
 
 #else
             const int numArgs = 8;
@@ -307,12 +299,12 @@ namespace Logger.ServiceFabric
                 eventData[6] = new EventData { DataPointer = (IntPtr) pNodeName, Size = SizeInBytes(nodeName) };
                 eventData[7] = new EventData { DataPointer = (IntPtr) pMessage, Size = SizeInBytes(message) };
 
-                WriteEventCore(ServiceWarnMessageEventId, numArgs, eventData);
+                WriteEventCore(EventConstants.ServiceWarnMessageEventId, numArgs, eventData);
             }
 #endif
         }
 
-        [Event(ServiceVerboseMessageEventId, Level = EventLevel.Verbose, Keywords = Keywords.LxFabric, Message = "{7}")]
+        [Event(EventConstants.ServiceVerboseMessageEventId, Level = EventLevel.Verbose, Keywords = Keywords.LxFabric, Message = "{7}")]
         private
 #if UNSAFE
         unsafe
@@ -328,7 +320,7 @@ namespace Logger.ServiceFabric
                 string message)
         {
 #if !UNSAFE
-            WriteEvent(ServiceVerboseMessageEventId, serviceName, serviceTypeName, replicaOrInstanceId, partitionId, applicationName, applicationTypeName, nodeName, message);
+            WriteEvent(EventConstants.ServiceVerboseMessageEventId, serviceName, serviceTypeName, replicaOrInstanceId, partitionId, applicationName, applicationTypeName, nodeName, message);
 
 #else
             const int numArgs = 8;
@@ -344,12 +336,12 @@ namespace Logger.ServiceFabric
                 eventData[6] = new EventData { DataPointer = (IntPtr) pNodeName, Size = SizeInBytes(nodeName) };
                 eventData[7] = new EventData { DataPointer = (IntPtr) pMessage, Size = SizeInBytes(message) };
 
-                WriteEventCore(ServiceVerboseMessageEventId, numArgs, eventData);
+                WriteEventCore(EventConstants.ServiceVerboseMessageEventId, numArgs, eventData);
             }
 #endif
         }
 
-        [Event(ServiceCriticalMessageEventId, Level = EventLevel.Critical, Keywords = Keywords.LxFabric, Message = "{7}"
+        [Event(EventConstants.ServiceCriticalMessageEventId, Level = EventLevel.Critical, Keywords = Keywords.LxFabric, Message = "{7}"
          )]
         private
 #if UNSAFE
@@ -366,7 +358,7 @@ namespace Logger.ServiceFabric
                 string message)
         {
 #if !UNSAFE
-            WriteEvent(ServiceCriticalMessageEventId, serviceName, serviceTypeName, replicaOrInstanceId, partitionId,
+            WriteEvent(EventConstants.ServiceCriticalMessageEventId, serviceName, serviceTypeName, replicaOrInstanceId, partitionId,
                 applicationName, applicationTypeName, nodeName, message);
 
 #else
@@ -383,7 +375,7 @@ namespace Logger.ServiceFabric
                 eventData[6] = new EventData { DataPointer = (IntPtr) pNodeName, Size = SizeInBytes(nodeName) };
                 eventData[7] = new EventData { DataPointer = (IntPtr) pMessage, Size = SizeInBytes(message) };
 
-                WriteEventCore(ServiceCriticalMessageEventId, numArgs, eventData);
+                WriteEventCore(EventConstants.ServiceCriticalMessageEventId, numArgs, eventData);
             }
 #endif
         }

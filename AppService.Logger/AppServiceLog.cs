@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Diagnostics.Tracing;
+using Microsoft.Diagnostics.Tracing;
 using System.Threading.Tasks;
 using Logger.Base;
 
 namespace Logger.AppService
 {
-    internal class AppServiceLog : EventSource, ILog
+    sealed class AppServiceLog : EventSource, ILog
     {
         public static readonly AppServiceLog Current = new AppServiceLog();
 
@@ -27,34 +27,40 @@ namespace Logger.AppService
             throw new NotImplementedException();
         }
 
+        [Event(EventConstants.ServiceVerboseMessageEventId, Level = EventLevel.Verbose)]
         public void LogVerbose(string message)
         {
-            throw new NotImplementedException();
+            WriteEvent(EventConstants.ServiceVerboseMessageEventId, message);
         }
 
+        [Event(EventConstants.ServiceInfoMessageEventId, Level = EventLevel.Informational)]
         public void LogInformation(string message)
         {
-            throw new NotImplementedException();
+            WriteEvent(EventConstants.ServiceInfoMessageEventId, message);
         }
 
+        [Event(EventConstants.ServiceWarnMessageEventId, Level = EventLevel.Warning)]
         public void LogWarning(string message)
         {
-            throw new NotImplementedException();
+            WriteEvent(EventConstants.ServiceWarnMessageEventId, message);
         }
 
+        [Event(EventConstants.ServiceErrorMessageEventId, Level = EventLevel.Error)]
         public void LogError(string message)
         {
-            throw new NotImplementedException();
+            WriteEvent(EventConstants.ServiceErrorMessageEventId, message);
         }
 
+        [Event(EventConstants.ServiceCriticalMessageEventId, Level = EventLevel.Critical)]
         public void LogCritical(string message)
         {
-            throw new NotImplementedException();
+            WriteEvent(EventConstants.ServiceCriticalMessageEventId, message);
         }
 
+        [Event(EventConstants.ServiceLogAlwaysMessageEventId, Level = EventLevel.LogAlways)]
         public void LogAlways(string message)
         {
-            throw new NotImplementedException();
+            WriteEvent(EventConstants.ServiceLogAlwaysMessageEventId, message);
         }
     }
 }

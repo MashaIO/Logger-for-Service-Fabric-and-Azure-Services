@@ -8,9 +8,23 @@ namespace Diagnostic.EventListeners.AppService
 {
     public class AppServiceConfigurationProvider : IConfigurationProvider
     {
-        private readonly List<KeyValuePair<string, string>> _configurationProperties = null;
+        private  List<KeyValuePair<string, string>> _configurationProperties = null;
 
-        public bool HasConfiguration => _configurationProperties != null;
+        public bool HasConfiguration
+        {
+            get
+            {
+                if (_configurationProperties != null && _configurationProperties.Any())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+                 
+            }
+        }
 
         public AppServiceConfigurationProvider()
         {
@@ -42,10 +56,13 @@ namespace Diagnostic.EventListeners.AppService
             string accountConnectionString = ConfigurationManager.AppSettings["StorageAccountConnectionString"];
             string storageTableName = ConfigurationManager.AppSettings["StorageTableName"];
 
-            this._configurationProperties.Add(new KeyValuePair<string, string>("StorageAccountConnectionString",
-                accountConnectionString));
-            this._configurationProperties.Add(new KeyValuePair<string, string>("StorageTableName", storageTableName));
+            var keyValuePairs = this._configurationProperties ?? new List<KeyValuePair<string, string>>();
 
+            keyValuePairs.Add(new KeyValuePair<string, string>("StorageAccountConnectionString",
+                   accountConnectionString));
+            keyValuePairs.Add(new KeyValuePair<string, string>("StorageTableName", storageTableName));
+
+            this._configurationProperties = keyValuePairs;
         }
     }
 }
