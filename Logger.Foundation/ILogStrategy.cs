@@ -1,7 +1,6 @@
 ﻿using System;
-using Logger.Base;
 
-namespace Logger.Infrastructure
+namespace Logger.Base
 {
     public interface ILogStrategy
     {
