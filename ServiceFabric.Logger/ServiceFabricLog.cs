@@ -2,26 +2,18 @@
 using System.Diagnostics.Tracing;
 using System.Fabric;
 using System.Threading.Tasks;
+using Logger.Base;
 
-namespace ServiceFabric.Logger
+namespace Logger.ServiceFabric
 {
     [EventSource(Name = "Lbas-Diagnostics-webservice")]
     internal class ServiceFabricLog : EventSource, ILog
     {
-        
-        public static readonly ServiceFabricLog Current = new ServiceFabricLog();
-
         static ServiceFabricLog()
         {
             // A workaround for the problem where ETW activities do not get tracked until Tasks infrastructure is initialized.
             // This problem will be fixed in .NET Framework 4.6.2.
             Task.Run(() => { });
-        }
-
-        // Instance constructor is private to enforce singleton semantics
-        private ServiceFabricLog() : base()
-        {
-
         }
 
         // Todo : Move to constants file
@@ -40,6 +32,20 @@ namespace ServiceFabric.Logger
         }
 
         public ServiceContext ServiceContext { get; set; }
+
+        public void SetServiceContext(object serviceContext)
+        {
+            if (serviceContext == null)
+            {
+                throw new ArgumentNullException(nameof(serviceContext));
+            }
+
+            var isServiceContext = serviceContext is ServiceContext;
+            if (isServiceContext)
+            {
+                ServiceContext = (ServiceContext) serviceContext;
+            }
+        }
 
         [NonEvent]
         public void LogVerbose(string message)

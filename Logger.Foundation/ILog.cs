@@ -1,10 +1,8 @@
-﻿using System.Fabric;
-
-namespace ServiceFabric.Logger
+﻿namespace Logger.Base
 {
-    public interface ILog 
+    public interface ILog
     {
-        ServiceContext ServiceContext { get; set; }
+        void SetServiceContext(object serviceContext);
 
         void LogVerbose(string message);
 
@@ -17,6 +15,5 @@ namespace ServiceFabric.Logger
         void LogCritical(string message);
 
         void LogAlways(string message);
-
     }
 }

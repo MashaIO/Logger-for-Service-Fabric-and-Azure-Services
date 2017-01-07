@@ -1,10 +1,17 @@
-﻿namespace ServiceFabric.Logger
+﻿using System;
+using Logger.Base;
+
+namespace Logger.ServiceFabric
 {
-    class ConcreteFactoryServiceEventSource : LoggerFactory
+    public class ConcreteFactoryServiceEventSource : ILoggerFactory
     {
-        public override ILog GetLogger() //Factory Method Implementation 
+        public ILog GetLogger() //Factory Method Implementation 
         {
-            return  ServiceFabricLog.Current;
+            return new ServiceFabricLog();
+        }
+        public bool AppliesTo(Type type)
+        {
+            return typeof(ConcreteFactoryServiceEventSource) == type;
         }
     }
 }
