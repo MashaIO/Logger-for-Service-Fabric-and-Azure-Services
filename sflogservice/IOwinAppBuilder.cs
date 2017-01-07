@@ -10,6 +10,6 @@ namespace sflogservice
 {
     public interface IOwinAppBuilder
     {
-        void Configuration(IAppBuilder appBuilder,  ILog log);
+        void Configuration(IAppBuilder appBuilder);
     }
 }

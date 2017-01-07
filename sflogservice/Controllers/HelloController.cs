@@ -6,21 +6,26 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Logger.Base;
+using Logger.Infrastructure;
+using Logger.ServiceFabric;
 
 namespace sflogservice.Controllers
 {
     [RoutePrefix("hello")]
     public class HelloController : ApiController
     {
-        public HelloController(ILog log)
-        {
+        private readonly ILogStrategy _log;
 
+        public HelloController(ILogStrategy log)
+        {
+            _log = log;
         }
 
         [HttpGet]
         [Route("logmessage")]
         public HttpResponseMessage GetAsync()
         {
+            _log.CreateLog(typeof(ConcreteFactoryServiceEventSource)).LogVerbose("hi");
             return new HttpResponseMessage()
             {
                 Content = new StringContent("buena suerte !!!!")

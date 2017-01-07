@@ -15,13 +15,10 @@ namespace sflogservice
     /// </summary>
     internal sealed class sflogservice : StatelessService
     {
-        private readonly ILog _log;
-
-        public sflogservice(StatelessServiceContext context, ILog log)
+        public sflogservice(StatelessServiceContext context)
             : base(context)
         {
-            _log = log;
-            _log.SetServiceContext(context);
+          
         }
 
         /// <summary>
@@ -32,7 +29,7 @@ namespace sflogservice
         {
             return new[]
             {
-                new ServiceInstanceListener(parameters => new OwinCommunicationListener("", new Startup(parameters), parameters, _log))
+                new ServiceInstanceListener(parameters => new OwinCommunicationListener("", new Startup(parameters), parameters))
             };
         }
 

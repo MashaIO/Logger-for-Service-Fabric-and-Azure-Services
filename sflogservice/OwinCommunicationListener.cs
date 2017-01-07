@@ -17,17 +17,16 @@ namespace sflogservice
     {
         private readonly IOwinAppBuilder startup;
         private readonly StatelessServiceContext serviceContext;
-        private readonly ILog _log;
         private readonly string appRoot;
         private IDisposable serverHandle;
         private string listeningAddress;
 
-        public OwinCommunicationListener(string appRoot, IOwinAppBuilder startup, StatelessServiceContext serviceContext, ILog log)
+        public OwinCommunicationListener(string appRoot, IOwinAppBuilder startup, StatelessServiceContext serviceContext)
         {
             this.startup = startup;
             this.appRoot = appRoot;
             this.serviceContext = serviceContext;
-            _log = log;
+           
         }
 
         public Task<string> OpenAsync(CancellationToken cancellationToken)
@@ -43,7 +42,7 @@ namespace sflogservice
                     ? String.Empty
                     : this.appRoot.TrimEnd('/') + '/');
 
-            this.serverHandle = WebApp.Start(this.listeningAddress, appBuilder => this.startup.Configuration(appBuilder, this._log));
+            this.serverHandle = WebApp.Start(this.listeningAddress, appBuilder => this.startup.Configuration(appBuilder));
 
             string resultAddress = this.listeningAddress.Replace("+", FabricRuntime.GetNodeContext().IPAddressOrFQDN);
 

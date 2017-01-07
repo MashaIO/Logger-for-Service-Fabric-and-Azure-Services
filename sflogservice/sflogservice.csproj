@@ -147,6 +147,10 @@
       <Project>{56e5f181-c69b-496c-9497-180b94788c1f}</Project>
       <Name>Logger.Base</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Logger.Infrastructure\Logger.Infrastructure.csproj">
+      <Project>{9039DE9C-9F84-4E89-80BA-9CF9B940824C}</Project>
+      <Name>Logger.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ServiceFabric.Logger\Logger.ServiceFabric.csproj">
       <Project>{4390b1b7-a7a5-46ba-805f-4b54f91b08a4}</Project>
       <Name>Logger.ServiceFabric</Name>

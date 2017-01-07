@@ -4,6 +4,7 @@ using System.Fabric;
 using System.Threading;
 using System.Threading.Tasks;
 using Logger.Base;
+using Logger.Infrastructure;
 using Logger.ServiceFabric;
 using Microsoft.ServiceFabric.Services.Runtime;
 
@@ -23,12 +24,11 @@ namespace sflogservice
                 // When Service Fabric creates an instance of this service type,
                 // an instance of the class is created in this host process.
 
-                ILoggerFactory loggerFactory = new ConcreteFactoryServiceEventSource();
-                ILog log = loggerFactory.GetLogger();
+               
 
 
                 ServiceRuntime.RegisterServiceAsync("sflogserviceType",
-                    context => new sflogservice(context, log)).GetAwaiter().GetResult();
+                    context => new sflogservice(context)).GetAwaiter().GetResult();
 
                 ServiceEventSource.Current.ServiceTypeRegistered(Process.GetCurrentProcess().Id, typeof(sflogservice).Name);
 
