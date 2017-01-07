@@ -34,7 +34,7 @@ namespace sflogservice
 
             // Register your Types
             container.RegisterType<ILogStrategy, LogStrategy>(new InjectionConstructor(
-        new InjectionParameter<ILoggerFactory[]>(loggerFactories)));
+                            new InjectionParameter<ILoggerFactory[]>(loggerFactories)));
 
             config.DependencyResolver = new UnityDependencyResolver(container);
             config.MapHttpAttributeRoutes();

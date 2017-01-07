@@ -9,11 +9,19 @@ namespace Logger.ServiceFabric
     [EventSource(Name = "Lbas-Diagnostics-webservice")]
     internal class ServiceFabricLog : EventSource, ILog
     {
+        public static readonly ServiceFabricLog Current = new ServiceFabricLog();
+
         static ServiceFabricLog()
         {
             // A workaround for the problem where ETW activities do not get tracked until Tasks infrastructure is initialized.
             // This problem will be fixed in .NET Framework 4.6.2.
             Task.Run(() => { });
+        }
+
+        // Instance constructor is private to enforce singleton semantics
+        private ServiceFabricLog() : base()
+        {
+
         }
 
         // Todo : Move to constants file
@@ -31,7 +39,7 @@ namespace Logger.ServiceFabric
             public const EventKeywords LxFabric = (EventKeywords)0x4L;
         }
 
-        public ServiceContext ServiceContext { get; set; }
+        private ServiceContext _serviceContext;
 
         public void SetServiceContext(object serviceContext)
         {
@@ -43,7 +51,7 @@ namespace Logger.ServiceFabric
             var isServiceContext = serviceContext is ServiceContext;
             if (isServiceContext)
             {
-                ServiceContext = (ServiceContext) serviceContext;
+                _serviceContext = (ServiceContext) serviceContext;
             }
         }
 
@@ -53,13 +61,13 @@ namespace Logger.ServiceFabric
             if (this.IsEnabled())
             {
                 ServiceMessageVerbose(
-                    ServiceContext.ServiceName.ToString(),
-                    ServiceContext.ServiceTypeName,
-                    ServiceContext.ReplicaOrInstanceId,
-                    ServiceContext.PartitionId,
-                    ServiceContext.CodePackageActivationContext.ApplicationName,
-                    ServiceContext.CodePackageActivationContext.ApplicationTypeName,
-                    ServiceContext.NodeContext.NodeName,
+                    _serviceContext.ServiceName.ToString(),
+                    _serviceContext.ServiceTypeName,
+                    _serviceContext.ReplicaOrInstanceId,
+                    _serviceContext.PartitionId,
+                    _serviceContext.CodePackageActivationContext.ApplicationName,
+                    _serviceContext.CodePackageActivationContext.ApplicationTypeName,
+                    _serviceContext.NodeContext.NodeName,
                     message);
             }
         }
@@ -70,13 +78,13 @@ namespace Logger.ServiceFabric
             if (this.IsEnabled())
             {
                 ServiceMessageInfo(
-                    ServiceContext.ServiceName.ToString(),
-                    ServiceContext.ServiceTypeName,
-                    ServiceContext.ReplicaOrInstanceId,
-                    ServiceContext.PartitionId,
-                    ServiceContext.CodePackageActivationContext.ApplicationName,
-                    ServiceContext.CodePackageActivationContext.ApplicationTypeName,
-                    ServiceContext.NodeContext.NodeName,
+                    _serviceContext.ServiceName.ToString(),
+                    _serviceContext.ServiceTypeName,
+                    _serviceContext.ReplicaOrInstanceId,
+                    _serviceContext.PartitionId,
+                    _serviceContext.CodePackageActivationContext.ApplicationName,
+                    _serviceContext.CodePackageActivationContext.ApplicationTypeName,
+                    _serviceContext.NodeContext.NodeName,
                     message);
             }
         }
@@ -87,13 +95,13 @@ namespace Logger.ServiceFabric
             if (this.IsEnabled())
             {
                 ServiceMessageWarn(
-                    ServiceContext.ServiceName.ToString(),
-                    ServiceContext.ServiceTypeName,
-                    ServiceContext.ReplicaOrInstanceId,
-                    ServiceContext.PartitionId,
-                    ServiceContext.CodePackageActivationContext.ApplicationName,
-                    ServiceContext.CodePackageActivationContext.ApplicationTypeName,
-                    ServiceContext.NodeContext.NodeName,
+                    _serviceContext.ServiceName.ToString(),
+                    _serviceContext.ServiceTypeName,
+                    _serviceContext.ReplicaOrInstanceId,
+                    _serviceContext.PartitionId,
+                    _serviceContext.CodePackageActivationContext.ApplicationName,
+                    _serviceContext.CodePackageActivationContext.ApplicationTypeName,
+                    _serviceContext.NodeContext.NodeName,
                     message);
             }
         }
@@ -104,13 +112,13 @@ namespace Logger.ServiceFabric
             if (this.IsEnabled())
             {
                 ServiceMessageError(
-                    ServiceContext.ServiceName.ToString(),
-                    ServiceContext.ServiceTypeName,
-                    ServiceContext.ReplicaOrInstanceId,
-                    ServiceContext.PartitionId,
-                    ServiceContext.CodePackageActivationContext.ApplicationName,
-                    ServiceContext.CodePackageActivationContext.ApplicationTypeName,
-                    ServiceContext.NodeContext.NodeName,
+                    _serviceContext.ServiceName.ToString(),
+                    _serviceContext.ServiceTypeName,
+                    _serviceContext.ReplicaOrInstanceId,
+                    _serviceContext.PartitionId,
+                    _serviceContext.CodePackageActivationContext.ApplicationName,
+                    _serviceContext.CodePackageActivationContext.ApplicationTypeName,
+                    _serviceContext.NodeContext.NodeName,
                     message);
             }
         }
@@ -122,13 +130,13 @@ namespace Logger.ServiceFabric
             {
                
                 ServiceMessageCritical(
-                    ServiceContext.ServiceName.ToString(),
-                    ServiceContext.ServiceTypeName,
-                    ServiceContext.ReplicaOrInstanceId,
-                    ServiceContext.PartitionId,
-                    ServiceContext.CodePackageActivationContext.ApplicationName,
-                    ServiceContext.CodePackageActivationContext.ApplicationTypeName,
-                    ServiceContext.NodeContext.NodeName,
+                    _serviceContext.ServiceName.ToString(),
+                    _serviceContext.ServiceTypeName,
+                    _serviceContext.ReplicaOrInstanceId,
+                    _serviceContext.PartitionId,
+                    _serviceContext.CodePackageActivationContext.ApplicationName,
+                    _serviceContext.CodePackageActivationContext.ApplicationTypeName,
+                    _serviceContext.NodeContext.NodeName,
                     message);
             }
         }
@@ -140,13 +148,13 @@ namespace Logger.ServiceFabric
             {
                 
                 ServiceMessageLogAlways(
-                    ServiceContext.ServiceName.ToString(),
-                    ServiceContext.ServiceTypeName,
-                    ServiceContext.ReplicaOrInstanceId,
-                    ServiceContext.PartitionId,
-                    ServiceContext.CodePackageActivationContext.ApplicationName,
-                    ServiceContext.CodePackageActivationContext.ApplicationTypeName,
-                    ServiceContext.NodeContext.NodeName,
+                    _serviceContext.ServiceName.ToString(),
+                    _serviceContext.ServiceTypeName,
+                    _serviceContext.ReplicaOrInstanceId,
+                    _serviceContext.PartitionId,
+                    _serviceContext.CodePackageActivationContext.ApplicationName,
+                    _serviceContext.CodePackageActivationContext.ApplicationTypeName,
+                    _serviceContext.NodeContext.NodeName,
                     message);
             }
         }

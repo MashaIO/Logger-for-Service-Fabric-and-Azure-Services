@@ -25,7 +25,13 @@ namespace sflogservice.Controllers
         [Route("logmessage")]
         public HttpResponseMessage GetAsync()
         {
-            _log.CreateLog(typeof(ConcreteFactoryServiceEventSource)).LogVerbose("hi");
+            _log.CreateLog(typeof(ConcreteFactoryServiceEventSource)).LogVerbose("Log Verbose");
+            _log.CreateLog(typeof(ConcreteFactoryServiceEventSource)).LogAlways("Log Always");
+            _log.CreateLog(typeof(ConcreteFactoryServiceEventSource)).LogCritical(("Log Critical"));
+            _log.CreateLog(typeof(ConcreteFactoryServiceEventSource)).LogError("Log Error");
+            _log.CreateLog(typeof(ConcreteFactoryServiceEventSource)).LogInformation("Log Information");
+            _log.CreateLog(typeof(ConcreteFactoryServiceEventSource)).LogWarning("Log Warning");
+
             return new HttpResponseMessage()
             {
                 Content = new StringContent("buena suerte !!!!")
