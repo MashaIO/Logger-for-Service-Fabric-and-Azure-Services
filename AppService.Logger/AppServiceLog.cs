@@ -57,10 +57,5 @@ namespace Logger.AppService
             WriteEvent(EventConstants.ServiceCriticalMessageEventId, message);
         }
 
-        [Event(EventConstants.ServiceLogAlwaysMessageEventId, Level = EventLevel.LogAlways)]
-        public void LogAlways(string message)
-        {
-            WriteEvent(EventConstants.ServiceLogAlwaysMessageEventId, message);
-        }
     }
 }

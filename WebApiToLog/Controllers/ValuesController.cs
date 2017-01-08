@@ -20,7 +20,6 @@ namespace WebApiToLog.Controllers
         public HttpResponseMessage Get()
         {
             _log.CreateLog(typeof(ConcreteFactoryAppEventSource)).LogVerbose("Log Verbose");
-            _log.CreateLog(typeof(ConcreteFactoryAppEventSource)).LogAlways("Log Always");
             _log.CreateLog(typeof(ConcreteFactoryAppEventSource)).LogCritical(("Log Critical"));
             _log.CreateLog(typeof(ConcreteFactoryAppEventSource)).LogError("Log Error");
             _log.CreateLog(typeof(ConcreteFactoryAppEventSource)).LogInformation("Log Information");

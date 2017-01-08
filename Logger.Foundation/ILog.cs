@@ -14,6 +14,5 @@
 
         void LogCritical(string message);
 
-        void LogAlways(string message);
     }
 }

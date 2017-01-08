@@ -22,8 +22,13 @@ namespace Microsoft.Diagnostics.EventListeners
 
         public string Keywords { get; set; }
 
+        public string KeywordName { get; set; }
+
         public string EventName { get; set; }
 
+        public string EventMessage { get; set; }
+
+        public string TaskName { get; set; }
         public IDictionary<string, object> Payload { get; set; }
     }
 }

@@ -3,6 +3,8 @@
 //  Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
 // ------------------------------------------------------------
 
+using Microsoft.Diagnostics.Tracing;
+
 namespace Microsoft.Diagnostics.EventListeners
 {
     using System;
@@ -121,23 +123,30 @@ namespace Microsoft.Diagnostics.EventListeners
             }
         }
 
+        // Below method is altered to adhere with the service fabric.
         private DynamicTableEntity ToTableEntity(EventData eventData, string partitionKey, string rowKeyPrefix)
         {
-            DynamicTableEntity result = new DynamicTableEntity();
-            result.PartitionKey = partitionKey;
-            result.RowKey = rowKeyPrefix + KeySegmentSeparator + this.GetEntitySequenceId().ToString() + KeySegmentSeparator + this.instanceId;
+            DynamicTableEntity result = new DynamicTableEntity
+            {
+                PartitionKey = partitionKey,
+                RowKey =
+                    rowKeyPrefix + KeySegmentSeparator + this.GetEntitySequenceId().ToString() + KeySegmentSeparator +
+                    this.instanceId
+            };
+
+            var eventLevel = (int)Enum.Parse(typeof(EventLevel), eventData.Level);
 
             result.Properties.Add(nameof(eventData.Timestamp), new EntityProperty(eventData.Timestamp));
             result.Properties.Add(nameof(eventData.ProviderName), new EntityProperty(eventData.ProviderName));
             result.Properties.Add(nameof(eventData.EventId), new EntityProperty(eventData.EventId));
-            result.Properties.Add(nameof(eventData.Message), new EntityProperty(eventData.Message));
-            result.Properties.Add(nameof(eventData.Level), new EntityProperty(eventData.Level));
-            result.Properties.Add(nameof(eventData.Keywords), new EntityProperty(eventData.Keywords));
-            result.Properties.Add(nameof(eventData.EventName), new EntityProperty(eventData.EventName));
-
+            result.Properties.Add(nameof(eventData.Level), new EntityProperty(eventLevel));
+            result.Properties.Add(nameof(eventData.KeywordName), new EntityProperty(eventData.Keywords));
+            result.Properties.Add(nameof(eventData.TaskName), new EntityProperty(eventData.EventName));
+           
             foreach (KeyValuePair<string, object> item in eventData.Payload)
             {
-                result.Properties.Add(item.Key, EntityProperty.CreateEntityPropertyFromObject(item.Value));
+                result.Properties.Add(nameof(eventData.Message), EntityProperty.CreateEntityPropertyFromObject(item.Value));
+                result.Properties.Add(nameof(eventData.EventMessage), EntityProperty.CreateEntityPropertyFromObject(item.Value));
             }
 
             return result;
