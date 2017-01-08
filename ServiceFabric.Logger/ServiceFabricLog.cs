@@ -6,7 +6,7 @@ using Logger.Base;
 
 namespace Logger.ServiceFabric
 {
-    [EventSource(Name = "Lbas-Diagnostics-webservice")]
+    [EventSource(Name = "sf-Diagnostics-webservice")]
     internal class ServiceFabricLog : EventSource, ILog
     {
         public static readonly ServiceFabricLog Current = new ServiceFabricLog();

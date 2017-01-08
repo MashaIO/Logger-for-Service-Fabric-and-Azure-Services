@@ -1,0 +1,63 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "clusterName": {
+            "value": "azvlog"
+        },
+        "clusterLocation": {
+            "value": "centralus"
+        },
+        "computeLocation": {
+            "value": "centralus"
+        },
+        "adminUserName": {
+            "value": "warsoft"
+        },
+        "nicName": {
+            "value": "NIC-azvlog"
+        },
+        "publicIPAddressName": {
+            "value": "azvlog-PubIP"
+        },
+        "vmStorageAccountName": {
+            "value": "sfvmazvlog"
+        },
+        "dnsName": {
+            "value": "azvlog"
+        },
+        "virtualNetworkName": {
+            "value": "VNet-azvlog"
+        },
+        "lbName": {
+            "value": "LB-azvlog"
+        },
+        "lbIPName": {
+            "value": "LBIP-azvlog"
+        },
+      "applicationDiagnosticsStorageAccountName": {
+        "value": "sfdgaztlog"
+      },
+        "supportLogStorageAccountName": {
+            "value": "sflogsazvlog"
+        },
+        "nt0ephemeralStartPort": {
+            "value": 49152
+        },
+        "nt0ephemeralEndPort": {
+            "value": 65534
+        },
+        "nt0applicationStartPort": {
+            "value": 20000
+        },
+        "nt0applicationEndPort": {
+            "value": 30000
+        },
+        "nt0fabricTcpGatewayPort": {
+            "value": 19000
+        },
+        "nt0fabricHttpGatewayPort": {
+            "value": 19080
+        }
+    }
+}

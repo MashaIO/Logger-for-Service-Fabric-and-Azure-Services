@@ -23,6 +23,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diagnostic.EventListeners.A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiToLog", "WebApiToLog\WebApiToLog.csproj", "{2FF2667D-FE41-49D8-8E55-404538B4E539}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ARM", "ARM", "{881FF119-3960-4674-B4E7-BD57BD3602D7}"
+	ProjectSection(SolutionItems) = preProject
+		ARM\deploy.ps1 = ARM\deploy.ps1
+		ARM\deploy.sh = ARM\deploy.sh
+		ARM\deployer.rb = ARM\deployer.rb
+		ARM\DeploymentHelper.cs = ARM\DeploymentHelper.cs
+		ARM\parameters.json = ARM\parameters.json
+		ARM\template.json = ARM\template.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CloudRelease|Any CPU = CloudRelease|Any CPU
