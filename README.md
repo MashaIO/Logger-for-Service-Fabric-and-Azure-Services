@@ -1,6 +1,12 @@
 # AzureSerficeFabricAndAppServiceLogger
 Azure Diagnositics for Service Fabric(ETW) and App Service(Tablestorage provider extendable)
 
+The idea of this simple application is to have a common logger implmentation for both Service Fabric and App Service.
+
+Also we can achieve to use the same Table storage for n number of Service Fabric and n number of App Service.
+
+I have tried my best to decouple the depedencies for both testability and adaptability
+
 This simple application will help in logging service fabric application with ETW which will finally log into table storage. Also this log can be used for app service also (where ever required).
 
 # Patterns and Features
@@ -107,6 +113,17 @@ Testing the log(HelloContoller.cs)
                 Content = new StringContent("buena suerte !!!!")
             };
         }
+# ARM Changes
+
+Notice the changes required for associating a table storage log table to service fabric.
+
+                                                      {
+                                                        "provider": "sf-Diagnostics-webservice",
+                                                        "scheduledTransferPeriod": "PT5M",
+                                                        "DefaultEvents": {
+                                                          "eventDestination": "sfServiceFabricLogs"
+                                                        }
+                                                      }
 
 # Note
 
