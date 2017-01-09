@@ -1,4 +1,4 @@
-# AzureSerficeFabricAndAppServiceLogger
+# Azure ServiceFabric And AppService Logger
 Diagnositics for Service Fabric(ETW) and App Service(Tablestorage provider extendable)
 
 The idea of this application is to have a common logger implmentation for both Service Fabric and App Service.
