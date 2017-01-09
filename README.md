@@ -1,21 +1,21 @@
 # AzureSerficeFabricAndAppServiceLogger
-Azure Diagnositics for Service Fabric(ETW) and App Service(Tablestorage provider extendable)
+Diagnositics for Service Fabric(ETW) and App Service(Tablestorage provider extendable)
 
-The idea of this simple application is to have a common logger implmentation for both Service Fabric and App Service.
+The idea of this application is to have a common logger implmentation for both Service Fabric and App Service.
 
-Also we can achieve to use the same Table storage for n number of Service Fabric and n number of App Service.
+Also we can achieve to use the same Table storage(log table) for n number of Service Fabric and n number of App Service.
 
 I have tried my best to decouple the depedencies for both testability and adaptability
 
-This simple application will help in logging service fabric application with ETW which will finally log into table storage. Also this log can be used for app service also (where ever required).
+This sample application will show how to log service fabric application with ETW which will finally log into table storage and also log azure services with event source again loged to table storage
 
 # Patterns and Features
-1. Strategy and factory pattern implemented to decouple app service log and service fabric log in applications.
+1. Strategy and factory pattern implemented to decouple appservice event source and service fabric event source
 2. ARM template to create/associate table storage to service fabric.
-3. Custom event added to App service(Table storage) and service fabric(ETW)
+3. Custom event added to App service(Table storage event listnere) and service fabric(ETW).
 4. Extendable provider added for app service so that provider can be changed as per requirement.
 5. BufferEventlistner will help in listen to events and log it to the table storage.
-6. In test folder show cased how to use the logger in both Service fabric and app service.
+6. In test folder i tried to show case how to use the logger in both Service fabric and app service.
 
 # Implementation
 
