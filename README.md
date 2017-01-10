@@ -63,7 +63,7 @@ Testing the log(HelloContoller.cs)
             };
         }
  
- # App Service
+# App Service
  
  In global.asax file of WebApi project. You see how to enable events and configure the even source for App service.
  
