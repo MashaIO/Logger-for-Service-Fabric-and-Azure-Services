@@ -5,7 +5,7 @@ using Logger.Base;
 
 namespace Logger.AppService
 {
-    sealed class AppServiceEventSource : EventSource, ILogInternal
+    internal sealed class AppServiceEventSource : EventSource, ILogInternal
     {
         public static readonly AppServiceEventSource Current = new AppServiceEventSource();
 
