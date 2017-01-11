@@ -23,39 +23,35 @@ This sample application will show how to log service fabric application with ETW
 
 In your Startup you can see how logger is configured. By this we can say it is an decoupled one which will help in both testing and adaptability.
 
-            // Creating a concrete service fabric event source 
-            var concreteFactoryServiceEventSource = new ConcreteFactoryServiceEventSource(this._serviceContext);
-            
+                      
             // Configure the required factories to the array(In our case this is service fabric so that Service fabric event source more than enough)
-            ILoggerFactory[] loggerFactories = { concreteFactoryServiceEventSource };
+            ILoggerFactory loggerFactory = new ConcreteFactoryServiceFabricEventSource(this._serviceContext);
             
             var container = new UnityContainer();
           
             // Register your Types
-            container.RegisterType<ILogStrategy, LogStrategy>(new InjectionConstructor(
-                            new InjectionParameter<ILoggerFactory[]>(loggerFactories)));
+              container.RegisterType<ILog, Log>(new InjectionConstructor(new InjectionParameter<ILoggerFactory>(loggerFactory)));
 
             config.DependencyResolver = new UnityDependencyResolver(container);
 
 Testing the log(HelloContoller.cs)
 
-        private readonly ILogStrategy _log;
+         public ILog Log { get; set; }
 
-        public HelloController(ILogStrategy log)
+        public HelloController(ILog log)
         {
-            _log = log;
+            Log = log;
         }
 
         [HttpGet]
         [Route("logmessage")]
         public HttpResponseMessage GetAsync()
         {
-             // Logs to ETW.
-            _log.CreateLog(typeof(ConcreteFactoryServiceEventSource)).LogVerbose("Log Verbose");
-            _log.CreateLog(typeof(ConcreteFactoryServiceEventSource)).LogCritical(("Log Critical"));
-            _log.CreateLog(typeof(ConcreteFactoryServiceEventSource)).LogError("Log Error");
-            _log.CreateLog(typeof(ConcreteFactoryServiceEventSource)).LogInformation("Log Information");
-            _log.CreateLog(typeof(ConcreteFactoryServiceEventSource)).LogWarning("Log Warning");
+            Log.Verbose("Log Verbose");
+            Log.Critical(("Log Critical"));
+            Log.Error("Log Error");
+            Log.Information("Log Information");
+            Log.Warning("Log Warning");
 
             return new HttpResponseMessage()
             {
@@ -69,7 +65,7 @@ Testing the log(HelloContoller.cs)
  
  We will using the table storage as the provider.
             
-            Sets up the provider specific details. 
+            //Sets up the provider specific details. 
             const string tableStorageEventListener = "TableStorageEventListener";
             AppServiceConfigurationProvider configProvider = new AppServiceConfigurationProvider();
             
@@ -80,33 +76,30 @@ Testing the log(HelloContoller.cs)
                 tsListener = new TableStorageEventListener(configProvider, appServiceHealthReporter);
             }
 
-            var concreteFactoryAppServiceEventSource = new ConcreteFactoryAppEventSource();
-            ILoggerFactory[] loggerFactories = { concreteFactoryAppServiceEventSource };
+            ILoggerFactory loggerFactory = new ConcreteFactoryAppServiceEventSource();
 
 
-            var eventSource = concreteFactoryAppServiceEventSource.GetLogger() as EventSource;
-            // Enable the Events.
-            tsListener?.EnableEvents(eventSource, Microsoft.Diagnostics.Tracing.EventLevel.Verbose);
+            var eventSource = loggerFactory.GetLogger() as EventSource;
+            tsListener?.EnableEvents(eventSource, EventLevel.Verbose);
             
   Log controller implementation
   
-  private readonly ILogStrategy _log;
+        public ILog Log { get; set; }
 
-        public ValuesController(ILogStrategy log)
+        public ValuesController(ILog log)
         {
-            _log = log;
+            Log = log;
         }
 
         [HttpGet]
         [Route("logmessage")]
         public HttpResponseMessage Get()
         {
-             // Logs to table storage
-            _log.CreateLog(typeof(ConcreteFactoryAppEventSource)).LogVerbose("Log Verbose");
-            _log.CreateLog(typeof(ConcreteFactoryAppEventSource)).LogCritical(("Log Critical"));
-            _log.CreateLog(typeof(ConcreteFactoryAppEventSource)).LogError("Log Error");
-            _log.CreateLog(typeof(ConcreteFactoryAppEventSource)).LogInformation("Log Information");
-            _log.CreateLog(typeof(ConcreteFactoryAppEventSource)).LogWarning("Log Warning");
+            Log.Verbose("Log Verbose");
+            Log.Critical(("Log Critical"));
+            Log.Error("Log Error");
+            Log.Information("Log Information");
+            Log.Warning("Log Warning");
 
             return new HttpResponseMessage()
             {
