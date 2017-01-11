@@ -5,9 +5,11 @@ The idea of this application is to have a common logger implmentation for both S
 
 Also we can achieve to use the same Table storage(log table) for n number of Service Fabric and n number of App Service.
 
-I have tried my best to decouple the depedencies for both testability and adaptability
+I have tried to decouple the depedencies for both testability and adaptability
 
-This sample application will show how to log service fabric application with ETW which will finally log into table storage and also log azure services with event source again loged to table storage
+This sample application will show how to log service fabric application with ETW which will finally log into table storage.
+
+Along with service fabric logging this application also shows how to log azure services (Event listner is used to log it in table storage)
 
 # Patterns and Features
 1. Strategy and factory pattern implemented to decouple appservice event source and service fabric event source
