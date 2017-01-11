@@ -15,9 +15,9 @@ namespace sflogservice.Controllers
     {
         public ILog Log { get; set; }
 
-        public HelloController(ILog logStrategy)
+        public HelloController(ILog log)
         {
-            Log = logStrategy;
+            Log = log;
         }
 
         [HttpGet]

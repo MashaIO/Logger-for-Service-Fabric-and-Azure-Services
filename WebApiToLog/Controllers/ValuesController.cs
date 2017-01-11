@@ -10,9 +10,9 @@ namespace WebApiToLog.Controllers
     {
         public ILog Log { get; set; }
 
-        public ValuesController(ILog logStrategy)
+        public ValuesController(ILog log)
         {
-            Log = logStrategy;
+            Log = log;
         }
 
         [HttpGet]
