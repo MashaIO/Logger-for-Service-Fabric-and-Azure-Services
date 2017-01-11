@@ -13,22 +13,22 @@ namespace sflogservice.Controllers
     [RoutePrefix("hello")]
     public class HelloController : ApiController
     {
-        private readonly ILogStrategy _log;
+        public ILog Log { get; set; }
 
-        public HelloController(ILogStrategy log)
+        public HelloController(ILog logStrategy)
         {
-            _log = log;
+            Log = logStrategy;
         }
 
         [HttpGet]
         [Route("logmessage")]
         public HttpResponseMessage GetAsync()
         {
-            _log.CreateLog(typeof(ConcreteFactoryServiceEventSource)).LogVerbose("Log Verbose");
-            _log.CreateLog(typeof(ConcreteFactoryServiceEventSource)).LogCritical(("Log Critical"));
-            _log.CreateLog(typeof(ConcreteFactoryServiceEventSource)).LogError("Log Error");
-            _log.CreateLog(typeof(ConcreteFactoryServiceEventSource)).LogInformation("Log Information");
-            _log.CreateLog(typeof(ConcreteFactoryServiceEventSource)).LogWarning("Log Warning");
+            Log.Verbose("Log Verbose");
+            Log.Critical(("Log Critical"));
+            Log.Error("Log Error");
+            Log.Information("Log Information");
+            Log.Warning("Log Warning");
 
             return new HttpResponseMessage()
             {

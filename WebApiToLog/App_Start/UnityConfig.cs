@@ -8,13 +8,13 @@ namespace WebApiToLog
 {
     public static class UnityConfig
     {
-        public static void RegisterComponents(ILoggerFactory[] loggerFactories)
+        public static void RegisterComponents(ILoggerFactory loggerFactory)
         {
 			var container = new UnityContainer();
 
             // Register your Types
-            container.RegisterType<ILogStrategy, LogStrategy>(new InjectionConstructor(
-                            new InjectionParameter<ILoggerFactory[]>(loggerFactories)));
+            container.RegisterType<ILog, Log>(new InjectionConstructor(
+                            new InjectionParameter<ILoggerFactory>(loggerFactory)));
 
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }

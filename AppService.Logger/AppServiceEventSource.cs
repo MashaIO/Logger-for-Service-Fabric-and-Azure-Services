@@ -5,11 +5,11 @@ using Logger.Base;
 
 namespace Logger.AppService
 {
-    sealed class AppServiceLog : EventSource, ILog
+    sealed class AppServiceEventSource : EventSource, ILogInternal
     {
-        public static readonly AppServiceLog Current = new AppServiceLog();
+        public static readonly AppServiceEventSource Current = new AppServiceEventSource();
 
-        static AppServiceLog()
+        static AppServiceEventSource()
         {
             // A workaround for the problem where ETW activities do not get tracked until Tasks infrastructure is initialized.
             // This problem will be fixed in .NET Framework 4.6.2.
@@ -17,7 +17,7 @@ namespace Logger.AppService
         }
 
         // Instance constructor is private to enforce singleton semantics
-        private AppServiceLog() : base()
+        private AppServiceEventSource() : base()
         {
 
         }
@@ -28,31 +28,31 @@ namespace Logger.AppService
         }
 
         [Event(EventConstants.ServiceVerboseMessageEventId, Level = EventLevel.Verbose)]
-        public void LogVerbose(string message)
+        public void Verbose(string message)
         {
             WriteEvent(EventConstants.ServiceVerboseMessageEventId, message);
         }
 
         [Event(EventConstants.ServiceInfoMessageEventId, Level = EventLevel.Informational)]
-        public void LogInformation(string message)
+        public void Information(string message)
         {
             WriteEvent(EventConstants.ServiceInfoMessageEventId, message);
         }
 
         [Event(EventConstants.ServiceWarnMessageEventId, Level = EventLevel.Warning)]
-        public void LogWarning(string message)
+        public void Warning(string message)
         {
             WriteEvent(EventConstants.ServiceWarnMessageEventId, message);
         }
 
         [Event(EventConstants.ServiceErrorMessageEventId, Level = EventLevel.Error)]
-        public void LogError(string message)
+        public void Error(string message)
         {
             WriteEvent(EventConstants.ServiceErrorMessageEventId, message);
         }
 
         [Event(EventConstants.ServiceCriticalMessageEventId, Level = EventLevel.Critical)]
-        public void LogCritical(string message)
+        public void Critical(string message)
         {
             WriteEvent(EventConstants.ServiceCriticalMessageEventId, message);
         }

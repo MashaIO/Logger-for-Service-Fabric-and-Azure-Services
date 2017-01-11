@@ -21,14 +21,13 @@ namespace sflogservice
         {
             HttpConfiguration config = new HttpConfiguration();
 
-            var concreteFactoryServiceEventSource = new ConcreteFactoryServiceEventSource(this._serviceContext);
-            ILoggerFactory[] loggerFactories = { concreteFactoryServiceEventSource };
             
+            ILoggerFactory loggerFactory = new ConcreteFactoryServiceFabricEventSource(this._serviceContext);
+
             var container = new UnityContainer();
 
             // Register your Types
-            container.RegisterType<ILogStrategy, LogStrategy>(new InjectionConstructor(
-                            new InjectionParameter<ILoggerFactory[]>(loggerFactories)));
+            container.RegisterType<ILog, Log>(new InjectionConstructor(new InjectionParameter<ILoggerFactory>(loggerFactory)));
 
             config.DependencyResolver = new UnityDependencyResolver(container);
             config.MapHttpAttributeRoutes();

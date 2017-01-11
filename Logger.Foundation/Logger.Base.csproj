@@ -59,10 +59,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EventConstants.cs" />
-    <Compile Include="ILog.cs" />
+    <Compile Include="ILogInternal.cs" />
     <Compile Include="ILoggerFactory.cs" />
-    <Compile Include="ILogStrategy.cs" />
-    <Compile Include="LogStrategy.cs" />
+    <Compile Include="ILog.cs" />
+    <Compile Include="Log.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

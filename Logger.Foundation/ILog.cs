@@ -1,18 +1,8 @@
-﻿namespace Logger.Base
+﻿using System;
+
+namespace Logger.Base
 {
-    public interface ILog
+    public interface ILog : ILogInternal
     {
-        void SetServiceContext(object serviceContext);
-
-        void LogVerbose(string message);
-
-        void LogInformation(string message);
-
-        void LogWarning(string message);
-
-        void LogError(string message);
-
-        void LogCritical(string message);
-
     }
 }

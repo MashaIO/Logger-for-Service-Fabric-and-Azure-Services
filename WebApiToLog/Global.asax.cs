@@ -15,7 +15,7 @@ namespace WebApiToLog
         protected void Application_Start()
         {
             const string tableStorageEventListener = "TableStorageEventListener";
-            AppServiceConfigurationProvider configProvider = new AppServiceConfigurationProvider();
+            var configProvider = new AppServiceConfigurationProvider();
 
             TableStorageEventListener tsListener = null;
             if (configProvider.HasConfiguration)
@@ -24,15 +24,13 @@ namespace WebApiToLog
                 tsListener = new TableStorageEventListener(configProvider, appServiceHealthReporter);
             }
 
-            var concreteFactoryAppServiceEventSource = new ConcreteFactoryAppEventSource();
-            ILoggerFactory[] loggerFactories = { concreteFactoryAppServiceEventSource };
+            ILoggerFactory loggerFactory = new ConcreteFactoryAppServiceEventSource();
 
-
-            var eventSource = concreteFactoryAppServiceEventSource.GetLogger() as EventSource;
-            tsListener?.EnableEvents(eventSource, Microsoft.Diagnostics.Tracing.EventLevel.Verbose);
+            var eventSource = loggerFactory.GetLogger() as EventSource;
+            tsListener?.EnableEvents(eventSource, EventLevel.Verbose);
 
             // Web API configuration and services
-            UnityConfig.RegisterComponents(loggerFactories);
+            UnityConfig.RegisterComponents(loggerFactory);
 
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);

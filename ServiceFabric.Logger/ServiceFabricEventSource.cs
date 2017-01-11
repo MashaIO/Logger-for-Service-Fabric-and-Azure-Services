@@ -7,11 +7,11 @@ using Logger.Base;
 namespace Logger.ServiceFabric
 {
     [EventSource(Name = "sf-Diagnostics-webservice")]
-    internal class ServiceFabricLog : EventSource, ILog
+    internal class ServiceFabricEventSource : EventSource, ILogInternal
     {
-        public static readonly ServiceFabricLog Current = new ServiceFabricLog();
+        public static readonly ServiceFabricEventSource Current = new ServiceFabricEventSource();
 
-        static ServiceFabricLog()
+        static ServiceFabricEventSource()
         {
             // A workaround for the problem where ETW activities do not get tracked until Tasks infrastructure is initialized.
             // This problem will be fixed in .NET Framework 4.6.2.
@@ -19,7 +19,7 @@ namespace Logger.ServiceFabric
         }
 
         // Instance constructor is private to enforce singleton semantics
-        private ServiceFabricLog() : base()
+        private ServiceFabricEventSource() : base()
         {
 
         }
@@ -48,7 +48,7 @@ namespace Logger.ServiceFabric
         }
 
         [NonEvent]
-        public void LogVerbose(string message)
+        public void Verbose(string message)
         {
             if (this.IsEnabled())
             {
@@ -65,7 +65,7 @@ namespace Logger.ServiceFabric
         }
 
         [NonEvent]
-        public void LogInformation(string message)
+        public void Information(string message)
         {
             if (this.IsEnabled())
             {
@@ -82,7 +82,7 @@ namespace Logger.ServiceFabric
         }
 
         [NonEvent]
-        public void LogWarning(string message)
+        public void Warning(string message)
         {
             if (this.IsEnabled())
             {
@@ -99,7 +99,7 @@ namespace Logger.ServiceFabric
         }
 
         [NonEvent]
-        public void LogError(string message)
+        public void Error(string message)
         {
             if (this.IsEnabled())
             {
@@ -116,7 +116,7 @@ namespace Logger.ServiceFabric
         }
 
         [NonEvent]
-        public void LogCritical(string message)
+        public void Critical(string message)
         {
             if (this.IsEnabled())
             {

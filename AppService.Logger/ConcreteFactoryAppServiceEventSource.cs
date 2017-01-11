@@ -7,16 +7,16 @@ using Logger.Base;
 
 namespace Logger.AppService
 {
-    public class ConcreteFactoryAppEventSource : ILoggerFactory
+    public class ConcreteFactoryAppServiceEventSource : ILoggerFactory
     {
-        public ILog GetLogger()
+        public ILogInternal GetLogger()
         {
-            return AppServiceLog.Current;
+            return AppServiceEventSource.Current;
         }
 
         public bool AppliesTo(Type type)
         {
-            return typeof(ConcreteFactoryAppEventSource) == type;
+            return typeof(ConcreteFactoryAppServiceEventSource) == type;
         }
     }
 }

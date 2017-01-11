@@ -3,25 +3,25 @@ using Logger.Base;
 
 namespace Logger.ServiceFabric
 {
-    public class ConcreteFactoryServiceEventSource : ILoggerFactory
+    public class ConcreteFactoryServiceFabricEventSource : ILoggerFactory
     {
         private readonly object _serviceContext;
 
-        public ConcreteFactoryServiceEventSource(object serviceContext)
+        public ConcreteFactoryServiceFabricEventSource(object serviceContext)
         {
             _serviceContext = serviceContext;
         }
         
-        public ILog GetLogger() //Factory Method Implementation 
+        public ILogInternal GetLogger() //Factory Method Implementation 
         {
-            var serviceFabricLogInstance = ServiceFabricLog.Current;
+            var serviceFabricLogInstance = ServiceFabricEventSource.Current;
             serviceFabricLogInstance.SetServiceContext(_serviceContext);
             return serviceFabricLogInstance;
         }
 
         public bool AppliesTo(Type type)
         {
-            return typeof(ConcreteFactoryServiceEventSource) == type;
+            return typeof(ConcreteFactoryServiceFabricEventSource) == type;
         }
     }
 }

@@ -8,22 +8,22 @@ namespace WebApiToLog.Controllers
     [RoutePrefix("log")]
     public class ValuesController : ApiController
     {
-        private readonly ILogStrategy _log;
+        public ILog Log { get; set; }
 
-        public ValuesController(ILogStrategy log)
+        public ValuesController(ILog logStrategy)
         {
-            _log = log;
+            Log = logStrategy;
         }
 
         [HttpGet]
         [Route("logmessage")]
         public HttpResponseMessage Get()
         {
-            _log.CreateLog(typeof(ConcreteFactoryAppEventSource)).LogVerbose("Log Verbose");
-            _log.CreateLog(typeof(ConcreteFactoryAppEventSource)).LogCritical(("Log Critical"));
-            _log.CreateLog(typeof(ConcreteFactoryAppEventSource)).LogError("Log Error");
-            _log.CreateLog(typeof(ConcreteFactoryAppEventSource)).LogInformation("Log Information");
-            _log.CreateLog(typeof(ConcreteFactoryAppEventSource)).LogWarning("Log Warning");
+            Log.Verbose("Log Verbose");
+            Log.Critical(("Log Critical"));
+            Log.Error("Log Error");
+            Log.Information("Log Information");
+            Log.Warning("Log Warning");
 
             return new HttpResponseMessage()
             {
