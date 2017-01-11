@@ -21,3 +21,6 @@ bin
 /ServiceFabricLog/pkg/Debug/sflogservicePkg/Config/Settings.xml
 /ServiceFabricLog/pkg/Debug/sflogservicePkg/ServiceManifest.xml
 /.vs
+/Logger.SFandAS.sln.DotSettings.user
+/Logger.sln.DotSettings.user
+/ServiceFabric.Logger.sln.DotSettings.user
