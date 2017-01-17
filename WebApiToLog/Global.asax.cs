@@ -24,7 +24,7 @@ namespace WebApiToLog
                 tsListener = new TableStorageEventListener(configProvider, appServiceHealthReporter);
             }
 
-            ILoggerFactory loggerFactory = new ConcreteFactoryAppServiceEventSource();
+            ILogFactory loggerFactory = new AppServiceLogFactory();
 
             var eventSource = loggerFactory.GetLogger() as EventSource;
             tsListener?.EnableEvents(eventSource, EventLevel.Verbose);

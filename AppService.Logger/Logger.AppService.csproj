@@ -65,7 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppServiceEventSource.cs" />
-    <Compile Include="ConcreteFactoryAppServiceEventSource.cs" />
+    <Compile Include="AppServiceLogFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

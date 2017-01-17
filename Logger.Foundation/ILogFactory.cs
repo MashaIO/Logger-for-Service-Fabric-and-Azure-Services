@@ -2,7 +2,7 @@
 
 namespace Logger.Base
 {
-    public interface  ILoggerFactory
+    public interface  ILogFactory
     {
         ILogInternal GetLogger(); //Factory Method Declaration 
 

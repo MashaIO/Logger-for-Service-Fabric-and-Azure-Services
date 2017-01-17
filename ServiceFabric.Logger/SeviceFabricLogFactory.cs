@@ -3,7 +3,7 @@ using Logger.Base;
 
 namespace Logger.ServiceFabric
 {
-    public class ConcreteFactoryServiceFabricEventSource : ILoggerFactory
+    public class ConcreteFactoryServiceFabricEventSource : ILogFactory
     {
         private readonly object _serviceContext;
 

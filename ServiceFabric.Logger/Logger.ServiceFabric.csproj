@@ -90,7 +90,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConcreteFactoryServiceFabricEventSource.cs" />
+    <Compile Include="SeviceFabricLogFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceFabricEventSource.cs" />
   </ItemGroup>

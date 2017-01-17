@@ -7,7 +7,7 @@ using Logger.Base;
 
 namespace Logger.AppService
 {
-    public class ConcreteFactoryAppServiceEventSource : ILoggerFactory
+    public class AppServiceLogFactory : ILogFactory
     {
         public ILogInternal GetLogger()
         {
@@ -16,7 +16,7 @@ namespace Logger.AppService
 
         public bool AppliesTo(Type type)
         {
-            return typeof(ConcreteFactoryAppServiceEventSource) == type;
+            return typeof(AppServiceLogFactory) == type;
         }
     }
 }

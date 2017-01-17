@@ -5,9 +5,9 @@ namespace Logger.Base
 {
     public class Log : ILog
     {
-        private readonly ILoggerFactory _logFactory;
+        private readonly ILogFactory _logFactory;
 
-        public Log(ILoggerFactory logFactory)
+        public Log(ILogFactory logFactory)
         {
             if (logFactory == null)
             {
