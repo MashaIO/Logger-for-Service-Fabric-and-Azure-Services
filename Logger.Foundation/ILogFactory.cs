@@ -2,10 +2,8 @@
 
 namespace Logger.Base
 {
-    public interface  ILogFactory
+    public interface ILogFactory
     {
         ILogInternal GetLogger(); //Factory Method Declaration 
-
-        bool AppliesTo(Type type);
     }
 }

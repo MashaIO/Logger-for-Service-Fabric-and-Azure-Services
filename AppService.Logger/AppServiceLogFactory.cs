@@ -14,9 +14,6 @@ namespace Logger.AppService
             return AppServiceEventSource.Current;
         }
 
-        public bool AppliesTo(Type type)
-        {
-            return typeof(AppServiceLogFactory) == type;
-        }
+      
     }
 }

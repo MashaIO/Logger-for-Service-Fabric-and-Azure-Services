@@ -27,7 +27,7 @@ namespace WebApiToLog
             ILogFactory loggerFactory = new AppServiceLogFactory();
 
             var eventSource = loggerFactory.GetLogger() as EventSource;
-            tsListener?.EnableEvents(eventSource, EventLevel.Verbose);
+            tsListener?.EnableEvents(eventSource, configProvider.EventLevel);
 
             // Web API configuration and services
             UnityConfig.RegisterComponents(loggerFactory);
